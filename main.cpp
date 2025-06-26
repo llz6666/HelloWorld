@@ -1,35 +1,54 @@
 #include <iostream>
 using namespace std;
 
-
 // ullz
-void sort(int* arr, int size) 
+void quicksort(int arr[], int i, int j)
 {
-    int tmp = 0;
-    bool flag = false;
-    for (int i = 0; i < size - 1; i++)
+    if (i >= j)
     {
-        for (int j = 0; j < size - i - 1; j++) 
-	    {
-            // llz修改排序算法，从大到小
-	        //if (arr[j] > arr[j + 1])
-            if (arr[j] < arr[j+1])
-	        {
-		        tmp = arr[j];
-		        arr[j] = arr[j+1];
-		        arr[j+1] = tmp;
-	        }   
-	    }
-    	    if (flag){
-	        break;
-	    }
-    }	    
+        return;
+    }
+    int val = arr[i];
+    int l = i;
+    int r = j;
+    while (l < r)
+    {
+        while (l < r && arr[r] > val)
+        {
+            r--;
+        }
+        if (l < r)
+        {
+            swap(arr[l++], arr[r]);
+        }
+        while (l < r && arr[l] <= val)
+        {
+            l++;
+        }
+        if (l < r)
+        {
+            swap(arr[r--], arr[l]);
+        }
+    }
+    quicksort(arr, i, l - 1);
+    quicksort(arr, l + 1, j);
 }
 
-int main() {
+void sort(int *arr, int size)
+{
+    quicksort(arr, 0, size - 1);
+}
+
+int main()
+{
     /// llz1
-    int arr[] = {12,1,2,3,4};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    sort(arr,size);
+    int arr[] = {12, 1, 2, 3, 4};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    sort(arr, size);
+    for (int i = 0; i < size; i++)
+    {
+        cout << arr[i] << endl;
+    }
+    cout << endl;
     return 0;
 }
