@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+
+// ullz
 void sort(int* arr, int size) 
 {
     int tmp = 0;
