@@ -10,11 +10,13 @@ void sort(int* arr, int size)
     {
         for (int j = 0; j < size - i - 1; j++) 
 	    {
-	        if (arr[j] > arr[j + 1])
+            // llz修改排序算法，从大到小
+	        //if (arr[j] > arr[j + 1])
+            if (arr[j] < arr[j+1])
 	        {
-		    tmp = arr[j];
-		    arr[j] = arr[j+1];
-		    arr[j+1] = tmp;
+		        tmp = arr[j];
+		        arr[j] = arr[j+1];
+		        arr[j+1] = tmp;
 	        }   
 	    }
     }	    
